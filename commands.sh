@@ -10,7 +10,7 @@ docker build --platform linux/amd64 -t calendly .
 
 ## Command to give the tag Lastest to the Docker Image
 
-docker tag calendly:latest 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:latest
+docker tag calendly:latest 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:fresh
 
 
 ##you can get above URI from AWS ECR console
@@ -20,7 +20,7 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ## replace this 980921724429.dkr.ecr.us-east-1.amazonaws.com with your URI from AWS ECR console
 ## Command to Push the latest Image to AWS ECR
 
-docker push 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:latest
+docker push 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:fresh
 
 # Adding Comment again to Test continous deployment using AWS codebuild
 

@@ -18,4 +18,4 @@ phases:
       - echo Build Completed Successfully...
 
 artifacts:
-  files: []
+  files: - '**/*' # Uploads all files from the build

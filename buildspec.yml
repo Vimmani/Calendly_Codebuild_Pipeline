@@ -10,12 +10,12 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build --platform linux/amd64 -t calendly .
-      - docker tag calendly:latest 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:latest
+      - docker tag calendly:fresh 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:fresh
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:latest
+      - docker push 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:fresh
       - echo Build Completed Successfully...
 
 artifacts:
-  files: - '**/*' # Uploads all files from the build
+  files: []

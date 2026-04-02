@@ -12,7 +12,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 # Environment Variables (Configured in Lambda)
-S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'ivm-ecr-lambda-docker-bucket')
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'ivm-ecr-lambda-docketbucket')
 S3_FOLDER_PATH = os.getenv('S3_FOLDER_PATH', 'calendly/')
 SECRET_NAME = os.getenv('CALENDLY_SECRET_NAME', 'calendly-api-key')
 REGION_NAME = os.getenv('AWS_REGION', 'us-east-1')

@@ -22,5 +22,7 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 
 docker push 337964480109.dkr.ecr.us-east-1.amazonaws.com/calendly:latest
 
+# Adding Comment to Test continous deployment using AWS codebuild
+
 
 

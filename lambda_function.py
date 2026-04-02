@@ -12,7 +12,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 # Environment Variables (Configured in Lambda)
-S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'pvh-kareem')
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'ivm-ecr-lambda-docker-bucket')
 S3_FOLDER_PATH = os.getenv('S3_FOLDER_PATH', 'calendly/')
 SECRET_NAME = os.getenv('CALENDLY_SECRET_NAME', 'calendly-api-key')
 REGION_NAME = os.getenv('AWS_REGION', 'us-east-1')
@@ -55,7 +55,10 @@ def upload_to_s3(df, s3_path):
     
     logger.info(f"Uploaded {s3_path} to S3")
 
+# Calendely Personal Access Token generate from Calendely Account This access token willgive access to all my events, meetings users etc.abs
+# This access token is configured in the AWS Screct MAnager so that python code can retrive from there instead of hard coding it
 
+# eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNzc1MTUwODE4LCJqdGkiOiIxMmU5ZWQxOC1mNTc3LTQwZjUtYTVjZS1jZTNkMzU3ZTg0MGQiLCJ1c2VyX3V1aWQiOiIzYjFhZjhhNC0xNTNhLTQ5ZDAtYmY5Ni1iNjQ2MjdhMzM3NDciLCJzY29wZSI6ImF2YWlsYWJpbGl0eTpyZWFkIGF2YWlsYWJpbGl0eTp3cml0ZSBldmVudF90eXBlczpyZWFkIGV2ZW50X3R5cGVzOndyaXRlIGxvY2F0aW9uczpyZWFkIHJvdXRpbmdfZm9ybXM6cmVhZCBzaGFyZXM6d3JpdGUgc2NoZWR1bGVkX2V2ZW50czpyZWFkIHNjaGVkdWxlZF9ldmVudHM6d3JpdGUgc2NoZWR1bGluZ19saW5rczp3cml0ZSBncm91cHM6cmVhZCBvcmdhbml6YXRpb25zOnJlYWQgb3JnYW5pemF0aW9uczp3cml0ZSB1c2VyczpyZWFkIGFjdGl2aXR5X2xvZzpyZWFkIGRhdGFfY29tcGxpYW5jZTp3cml0ZSBvdXRnb2luZ19jb21tdW5pY2F0aW9uczpyZWFkIHdlYmhvb2tzOnJlYWQgd2ViaG9va3M6d3JpdGUifQ.IcN4U7837ntuXFBMF3sVsXb62mk3z8Qy_nIB23r_ulicywXKL2K9T7DwszRtZBwHtue6zVuxNVkAVM2ors7qLA
 def get_calendly_org_uri(api_key):
     url = "https://api.calendly.com/users/me"
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -124,7 +127,7 @@ def calculate_metrics(calendly_df):
     completed_calls = calendly_df[calendly_df["status"] == "completed"].shape[0]
     completed_calls_percentage = (completed_calls / total_scheduled_calls) * 100 if total_scheduled_calls > 0 else 0
 
-    metrics_data = {
+    metrics_data = { 
         "timestamp": [timestamp],
         "total_scheduled_calls": [total_scheduled_calls],
         "completed_calls": [completed_calls],
